@@ -149,7 +149,7 @@ const experiences = [
     points: [
       "Focused primarily on backend development, showcasing proficiency in JavaScript, TypeScript, and a commitment to object-oriented programming (OOP) principles using Node.js, Express.js, Prisma, and GraphQL.",
       "Proficient in frontend development using Next.js, React.js. Integrated tools like SWR, Axios, Tailwind CSS, and Bootstrap for streamlined development.",
-      "Solely contributed to the development of the Instatus web app, showcasing dedication to delivering high-quality, end-to-end solutions",
+      "Solely contributed to the development of the Instatus web app, showcasing dedication to delivering high-quality, end-to-end solutions.",
     ],
   },
   {
