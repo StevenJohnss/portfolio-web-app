@@ -75,7 +75,7 @@ const About = () => {
               </li>
               <li>
                 <b>Institution:</b> Faculty of Informatics & Computer Science,
-                British University in Egypt (BUE)
+                British University in Egypt (BUE).
               </li>
               <li>
                 <b>Major:</b> Computer Science.
