@@ -1,23 +1,17 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-const {BallCanvas} = lazy(() => import('./canvas'));
+import React from "react";
+
+import { BallCanvas } from "./canvas";
+import { SectionWrapper } from "../hoc";
+import { technologies } from "../constants";
 
 const Tech = () => {
-  const [load3D, setLoad3D] = useState(false);
-
-  useEffect(() => {
-    const isPowerfulDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency > 4;
-    setLoad3D(isPowerfulDevice);
-  }, []);
-
   return (
-    <div>
-      {load3D ? (
-        <Suspense fallback={<div>Loading 3D Model...</div>}>
-          <BallCanvas />
-        </Suspense>
-      ) : (
-        <div>3D Model not supported on this device.</div>
-      )}
+    <div className="flex flex-row flex-wrap justify-center gap-10">
+      {technologies.map((technology) => (
+        <div className="w-28 h-28" key={technology.name}>
+          <BallCanvas icon={technology.icon} />
+        </div>
+      ))}
     </div>
   );
 };
