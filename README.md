@@ -7,7 +7,6 @@ Welcome to my professional portfolio website, showcasing my skills and projects 
 
 - **Responsive Design**: Optimized for all devices using modern CSS frameworks and design principles.
 - **Dynamic Projects Section**: Interactive display of my projects with descriptions, technologies used, and links to source code and live demos.
-- **Professional Testimonials**: Feedback from colleagues and clients highlighting my contributions and work ethic.
 - **Interactive UI**: Utilizes React.js and Framer Motion for smooth animations and transitions.
 - **Contact Me**: A dedicated section with a form that visitors can use to send me emails directly.
 
