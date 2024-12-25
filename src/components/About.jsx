@@ -41,7 +41,7 @@ const About = () => {
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>
       </motion.div>
-      <div className="flex flex-col lg:flex-row gap-10 gap-10">
+      <div className="flex flex-col lg:flex-row gap-10">
         <div className="w-full lg:w-3/4">
           <motion.div variants={textVariant()}>
             <h2 className={styles.sectionHeadText}>Overview.</h2>

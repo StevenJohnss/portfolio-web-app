@@ -34,7 +34,7 @@ const Contact = () => {
 
     emailjs
       .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_test_service,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: `${form.name} through live portfolio site`,
@@ -47,7 +47,9 @@ const Contact = () => {
       .then(
         () => {
           setLoading(false);
-          toast.success("Thank you. I will get back to you as soon as possible.");
+          toast.success(
+            "Thank you. I will get back to you as soon as possible."
+          );
           setForm({
             name: "",
             email: "",

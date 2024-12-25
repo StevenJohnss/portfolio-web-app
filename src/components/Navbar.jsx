@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
@@ -13,7 +14,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
+      if (scrollTop > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -51,16 +52,32 @@ const Navbar = () => {
 
         <ul className="list-none hidden sm:flex flex-row gap-10">
           {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`${
-                active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
-              onClick={() => setActive(nav.title)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
+            <HashLink to={`/portfolio-web-app/#${nav.id}`}>
+              <li
+                key={nav.id}
+                className={`${
+                  active === nav.title ? "text-white" : "text-secondary"
+                } hover:text-white text-[18px] font-medium cursor-pointer`}
+                onClick={() => setActive(nav.title)}
+              >
+                {nav.title}
+              </li>
+            </HashLink>
           ))}
+          {process.env.NODE_ENV === "development" && (
+            <li
+              key={"payment"}
+              className={`${
+                active === "payment" ? "text-white" : "text-secondary"
+              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              onClick={() => {
+                setActive("payment");
+                window.scrollTo(0, 0);
+              }}
+            >
+              <Link to="/portfolio-web-app/payment">Payment</Link>
+            </li>
+          )}
         </ul>
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
@@ -78,19 +95,35 @@ const Navbar = () => {
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {navLinks.map((nav) => (
+                <HashLink to={`/portfolio-web-app/#${nav.id}`}>
+                  <li
+                    key={nav.id}
+                    className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                      active === nav.title ? "text-white" : "text-secondary"
+                    }`}
+                    onClick={() => {
+                      setToggle(!toggle);
+                      setActive(nav.title);
+                    }}
+                  >
+                    {nav.title}
+                  </li>
+                </HashLink>
+              ))}
+
+              {process.env.NODE_ENV === "development" && (
                 <li
-                  key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-secondary"
-                  }`}
+                  key={"payment"}
+                  className={`font-poppins font-medium cursor-pointer text-[16px]
+            ${active === "payment" ? "text-white" : "text-secondary"}`}
                   onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
+                    setActive("payment");
+                    window.scrollTo(0, 0);
                   }}
                 >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
+                  <Link to="/portfolio-web-app/payment">Payment</Link>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
         </div>
