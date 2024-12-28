@@ -64,20 +64,19 @@ const Navbar = () => {
               </li>
             </HashLink>
           ))}
-          {process.env.NODE_ENV === "development" && (
-            <li
-              key={"payment"}
-              className={`${
-                active === "payment" ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
-              onClick={() => {
-                setActive("payment");
-                window.scrollTo(0, 0);
-              }}
-            >
-              <Link to="/portfolio-web-app/payment">Payment</Link>
-            </li>
-          )}
+
+          <li
+            key={"payment"}
+            className={`${
+              active === "payment" ? "text-white" : "text-secondary"
+            } hover:text-white text-[18px] font-medium cursor-pointer`}
+            onClick={() => {
+              setActive("payment");
+              window.scrollTo(0, 0);
+            }}
+          >
+            <Link to="/portfolio-web-app/payment">Payment</Link>
+          </li>
         </ul>
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
@@ -111,19 +110,17 @@ const Navbar = () => {
                 </HashLink>
               ))}
 
-              {process.env.NODE_ENV === "development" && (
-                <li
-                  key={"payment"}
-                  className={`font-poppins font-medium cursor-pointer text-[16px]
+              <li
+                key={"payment"}
+                className={`font-poppins font-medium cursor-pointer text-[16px]
             ${active === "payment" ? "text-white" : "text-secondary"}`}
-                  onClick={() => {
-                    setActive("payment");
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <Link to="/portfolio-web-app/payment">Payment</Link>
-                </li>
-              )}
+                onClick={() => {
+                  setActive("payment");
+                  window.scrollTo(0, 0);
+                }}
+              >
+                <Link to="/portfolio-web-app/payment">Payment</Link>
+              </li>
             </ul>
           </div>
         </div>
