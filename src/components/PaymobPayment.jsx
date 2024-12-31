@@ -10,6 +10,7 @@ const PaymobPayment = ({ amount, integrationID, children }) => {
 
     try {
       const data = { amount, integration_id:integrationID };
+      console.log("env=",process.env.NODE_ENV)
       const host_url = process.env.NODE_ENV === 'development' 
         ? process.env.REACT_APP_BE_LOCAL_URL 
         : process.env.REACT_APP_BE_PROD_URL;
