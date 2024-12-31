@@ -10,11 +10,11 @@ const PaymobPayment = ({ amount, integrationID, children }) => {
 
     try {
       const data = { amount, integration_id:integrationID };
-      console.log("env=",process.env.NODE_ENV)
+      console.log("env=",process.env.NODE_ENV,process.env.REACT_APP_BE_PROD_URL )
       const host_url = process.env.NODE_ENV === 'development' 
         ? process.env.REACT_APP_BE_LOCAL_URL 
         : process.env.REACT_APP_BE_PROD_URL;
-      const request = await fetch(`https://portfolio-web-app-fawn.vercel.app/api/paymob/create-payment`, {
+      const request = await fetch(`${host_url}/api/paymob/create-payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
