@@ -68,7 +68,8 @@ app.get("/", (req, res) => {
   res.status(200).json({ 
     status: 'OK',
     timestamp: new Date().toISOString(),
-    summary: process.env.NODE_ENV === 'production'? "running on prod" : "running on dev"
+    summary: process.env.NODE_ENV === 'production'? "running on prod" : "running on dev",
+    allowed_origin: process.env.ALLOWED_ORIGIN,
   });
 });
 
