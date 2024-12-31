@@ -30,7 +30,7 @@ import tesla from "./company/tesla.png";
 
 import insite from "./company/fouinsite.jfif";
 import corecxe from "./company/corecxe.jfif";
-import instatus from "./company/instatus.jfif";
+import instatus from "./company/Instatus.jfif";
 import bue from "./company/bue.jfif";
 
 import ecommerce from "./Article_Thumbnail_Ecommerce_Website.jpg";
