@@ -75,7 +75,7 @@ const Navbar = () => {
               window.scrollTo(0, 0);
             }}
           >
-            <Link to="/portfolio-web-app/payment">Payment</Link>
+            <Link to="/payment">Payment</Link>
           </li>
         </ul>
 
@@ -119,7 +119,7 @@ const Navbar = () => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link to="/portfolio-web-app/payment">Payment</Link>
+                <Link to="/payment">Payment</Link>
               </li>
             </ul>
           </div>

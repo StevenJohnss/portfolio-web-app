@@ -35,7 +35,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route
-            path="/portfolio-web-app/"
+            path="/"
             element={
               <>
                 <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
@@ -53,8 +53,8 @@ const App = () => {
               </>
             }
           />
-          <Route path="/portfolio-web-app/payment" element={<Payment />} />
-          <Route path="/portfolio-web-app/payment-success" element={<PaymentSuccess />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
         </Routes>
       </div>
     </BrowserRouter>
