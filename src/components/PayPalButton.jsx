@@ -11,23 +11,26 @@ const PayPalButton = ({ amount, onSuccess }) => {
 
     window.paypal
       .Buttons({
-        style: {
-          layout: "vertical", // Options: "vertical" or "horizontal"
-          color: "black", // Options: "gold", "blue", "silver", etc.
-          shape: "pill", // Options: "rect" or "pill"
-          label: "pay", // Options: "pay", "checkout", "buynow", etc.
-          tagline: false, // Removes "Powered by PayPal"
-          height: 50, // Adjust the button height
-        },
-        funding: {
-          allowed: [window.paypal.FUNDING.CARD, window.paypal.FUNDING.PAYPAL], // Enable card and PayPal funding sources
-        },
+        // style: {
+        //   layout: "vertical", // Options: "vertical" or "horizontal"
+        //   color: "black", // Options: "gold", "blue", "silver", etc.
+        //   shape: "pill", // Options: "rect" or "pill"
+        //   label: "pay", // Options: "pay", "checkout", "buynow", etc.
+        //   tagline: false, // Removes "Powered by PayPal"
+        //   height: 50, // Adjust the button height
+        // },
+        // funding: {
+        //   allowed: [window.paypal.FUNDING.CARD, window.paypal.FUNDING.PAYPAL], // Enable card and PayPal funding sources
+        // },
         createOrder: (data, actions) => {
           return actions.order.create({
+            intent: "CAPTURE",
             purchase_units: [
               {
+                description: "donated table test",
                 amount: {
-                  value: amount, // Dynamically update the amount
+                  currency_code: "USD", // Ensure the currency is valid
+                  value: parseFloat(1.1).toFixed(2), // Ensure proper decimal format
                 },
               },
             ],

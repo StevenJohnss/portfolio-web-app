@@ -13,6 +13,7 @@ import {
   Works,
   StarsCanvas,
   Payment,
+  PaymentSuccess,
 } from "./components";
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
             }
           />
           <Route path="/portfolio-web-app/payment" element={<Payment />} />
+          <Route path="/portfolio-web-app/payment-success" element={<PaymentSuccess />} />
         </Routes>
       </div>
     </BrowserRouter>

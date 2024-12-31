@@ -1,51 +1,81 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import helmet from 'helmet';
+import compression from 'compression';
+import rateLimit from 'express-rate-limit';
+import morgan from 'morgan';
+import stripeRoutes from "./stripe.js";
+import paymobRoutes from "./paymob.js";
 
-const express = require("express");
+// Load environment variables
+dotenv.config();
+
 const app = express();
-const cors = require("cors");
-app.use(express.json());
-app.use(
-  cors({
-    origin: "*", //http://localhost:5500
-  })
-);
 
-app.get("/", (req, res) => {
-  res.send("Hello There");
+// Security middleware
+app.use(helmet());
+
+// Compression middleware
+app.use(compression());
+
+// Rate limiting - adjusted for serverless environment
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+app.use(limiter);
+
+// Logging middleware - adjusted for serverless
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'));
+} else {
+  app.use(morgan('combined'));
+}
+
+// Parse JSON bodies
+app.use(express.json({ limit: '10mb' }));
+
+// CORS configuration
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? process.env.ALLOWED_ORIGIN ?? "*" 
+    : "*",
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ 
+    error: process.env.NODE_ENV === 'production' 
+      ? 'Internal Server Error' 
+      : err.message 
+  });
 });
 
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
-
-const storeItems = new Map([
-  [1, { priceInCents: 10000, name: "Learn React Today" }],
-  [2, { priceInCents: 20000, name: "Learn CSS Today" }],
-]);
-
-app.post("/create-checkout-session", async (req, res) => {
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      mode: "payment",
-      line_items: req.body.items.map((item) => {
-        const storeItem = storeItems.get(item.id);
-        return {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: storeItem.name,
-            },
-            unit_amount: storeItem.priceInCents,
-          },
-          quantity: item.quantity,
-        };
-      }),
-      success_url: `${process.env.CLIENT_URL}/success.html`,
-      cancel_url: `${process.env.CLIENT_URL}/cancel.html`,
-    });
-    res.json({ url: session.url });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).json({ 
+    status: 'OK',
+    timestamp: new Date().toISOString()
+  });
 });
 
-app.listen(3000);
+// API routes
+app.use("/api/stripe", stripeRoutes);
+app.use("/api/paymob", paymobRoutes);
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: 'Not Found' });
+});
+
+const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// Export the app for Vercel
+export default app;
