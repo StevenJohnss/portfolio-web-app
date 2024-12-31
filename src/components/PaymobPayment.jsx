@@ -10,8 +10,10 @@ const PaymobPayment = ({ amount, integrationID, children }) => {
 
     try {
       const data = { amount, integration_id:integrationID };
-
-      const request = await fetch("http://localhost:3000/api/paymob/create-payment", {
+      const host_url = process.env.NODE_ENV === 'development' 
+        ? process.env.REACT_APP_BE_LOCAL_URL 
+        : process.env.REACT_APP_BE_PROD_URL;
+      const request = await fetch(`${host_url}/api/paymob/create-payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

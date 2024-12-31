@@ -39,7 +39,7 @@ app.use(express.json({ limit: '10mb' }));
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ?  "*" //process.env.ALLOWED_ORIGIN 
+    ?  process.env.ALLOWED_ORIGIN
     : "*",
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
