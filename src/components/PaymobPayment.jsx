@@ -10,10 +10,10 @@ const PaymobPayment = ({ amount, integrationID, children }) => {
 
     try {
       const data = { amount, integration_id:integrationID };
-      console.log("env=",process.env.NODE_ENV,process.env)
+      console.log("env=", process.env.NODE_ENV, process.env, import.meta.env)
       const host_url = process.env.NODE_ENV === 'development' 
-        ? import.meta.VITE_APP_BE_LOCAL_URL 
-        : import.meta.VITE_APP_BE_PROD_URL;
+        ? import.meta.env.VITE_APP_BE_LOCAL_URL 
+        : import.meta.env.VITE_APP_BE_PROD_URL;
       const request = await fetch(`${host_url}/api/paymob/create-payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
