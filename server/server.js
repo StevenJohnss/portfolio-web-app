@@ -39,21 +39,21 @@ app.use(express.json({ limit: '10mb' }));
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? process.env.ALLOWED_ORIGIN ?? "*" 
+    ?  "*" //process.env.ALLOWED_ORIGIN 
     : "*",
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ 
-    error: process.env.NODE_ENV === 'production' 
-      ? 'Internal Server Error' 
-      : err.message 
-  });
-});
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500).json({ 
+//     error: process.env.NODE_ENV === 'production' 
+//       ? 'Internal Server Error' 
+//       : err.message 
+//   });
+// });
 
 // Health check endpoint
 app.get("/health", (req, res) => {
