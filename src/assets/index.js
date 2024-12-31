@@ -28,10 +28,10 @@ import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 
-import insite from "./company/4insite_logo.png";
-import corecxe from "./company/corecxe.png";
-import instatus from "./company/instatus.png";
-import bue from "./company/the_british_university_in_egypt_logo.png";
+import insite from "./company/4insite_logo.jfif";
+import corecxe from "./company/corecxe.jfif";
+import instatus from "./company/instatus.jfif";
+import bue from "./company/the_british_university_in_egypt_logo.jfif";
 
 import ecommerce from "./Article_Thumbnail_Ecommerce_Website.jpg";
 import prizewheel from "./spin-to-win-wheel-gamification.jpg";
