@@ -35,4 +35,4 @@ Welcome to my professional portfolio website, showcasing my skills and projects 
 
 ## Live Demo
 
-You can view the live version of the portfolio [here](https://stevenjohnss.github.io/portfolio-web-app/).
+You can view the live version of the portfolio [here](https://steven-portfolio-web-app.vercel.app/).
